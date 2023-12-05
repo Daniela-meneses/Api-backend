@@ -2,6 +2,9 @@ import fastapi
 import sqlite3
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi segurity import HTTPBearer                                                                        
+from fastapi segurity import HTTPAuthorizationCredentials                                                         
+from fastapi import Depends
 
 # Crea la base de datos
 conn = sqlite3.connect("sql/contactos.db")
@@ -78,3 +81,14 @@ async def eliminar_contacto(email: str):
     c.execute('DELETE FROM contactos WHERE email = ?', (email,))
     conn.commit()
     return {"mensaje":"Contacto eliminado"}
+
+
+
+
+
+
+securityBearer =HTTPBearer() <- Recupera el token
+         
+         @app.get('/')
+         def roat(credentials:HTTPAuthorizationCredentials =Depends(segurityBearer)):
+             token = credentials.Credentials
