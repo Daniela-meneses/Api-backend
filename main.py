@@ -84,7 +84,11 @@ async def eliminar_contacto(email: str):
 
 
 
+
+
+
+securityBearer =HTTPBearer() <- Recupera el token
          
-@app.get('/contactos/')
+@app.get('/contactos')
 def roat(credentials:HTTPAuthorizationCredentials =Depends(segurityBearer)):
 token = credentials.Credentials
